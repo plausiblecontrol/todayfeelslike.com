@@ -1,36 +1,56 @@
 #!/bin/python3
 import bs4
 from bs4 import BeautifulSoup as soup
+import json
 from urllib.request import urlopen
 from collections import Counter
 from datetime import date
-
-news_url="https://news.google.com/news/rss"
-Client=urlopen(news_url)
-xml_page=Client.read()
-Client.close()
-
-commonWords = ['news','the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what', 'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me', 'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take', 'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them', 'see', 'other', 'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over', 'think', 'also', 'back', 'after', 'use', 'two', 'how', 'our', 'work', 'first', 'well', 'way', 'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most','say','says']
+from commonwords import *
+from jsonfeeds import *
+from rssfeeds import *
 
 
-soup_page=soup(xml_page,"xml")
-news_list=soup_page.findAll("item")
-# Print news title, url and publish date
+def readPage(url):
+  Client = urlopen(url)
+  page = Client.read()
+  Client.close()
+  return page
 
-articles = list()
+def fetch_rss():
+  articles = list()
+  for rssfeed in rss_news_urls:
+    xml_page = readPage(rssfeed)
+    newsitems = soup(xml_page,"xml").findAll("item")
+    for article in newsitems:
+      articles.append(article.title.text)
+  return articles
 
-for news in news_list:
-  articles.append(news.title.text)
+def fetch_json():
+  articles = list()
+  for jsonfeed in json_news_urls:
+    json_page = json.loads(readPage(jsonfeed).decode("utf-8"))
+    for article in json_page['items']:
+      articles.append(article['title'])
+  return articles
 
-words = str(' '.join(articles)).translate({ord(c): "" for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+\"'"}).lower().split()
+def get_news():
+  headlines = fetch_rss() + fetch_json()
+  return headlines
+
+newz = get_news()
+print(len(newz))
+
+words = str(' '.join(newz)).translate({ord(c): "" for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+\"'"}).lower().split()
+print(len(words))
 
 specialWords = list()
 for s in words:
-  if s not in commonWords:
+  if s not in common:
     specialWords.append(s)
 
-mostCommon = Counter(specialWords).most_common(1)[0][0]
+print(Counter(specialWords).most_common(5))
 
-dayDiff=date.today()-date(2020,3,31)
-print(dayDiff.days)
-print(mostCommon)
+#mostCommon = Counter(specialWords).most_common(1)[0][0]
+#dayDiff=date.today()-date(2020,3,31)
+#print(dayDiff.days)
+#print(mostCommon)
