@@ -154,6 +154,8 @@ async function generateDailyPage(env) {
         nav { display: flex; gap: 20px; font-family: sans-serif; font-size: 0.9rem; }
         a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--border); cursor: pointer; }
         button { background: none; border: 1px solid var(--border); color: var(--text); padding: 5px 10px; cursor: pointer; font-family: sans-serif; }
+        archive { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); opacity: 0.3; text-decoration: none; transition: opacity 0.3s ease;}
+        archive:hover { opacity: 1;}
       </style>
     </head>
     <body>
@@ -165,6 +167,7 @@ async function generateDailyPage(env) {
           <button onclick="toggleTheme()" id="t-btn">Switch to Light</button>
         </div>
       </div>
+      <a href="/archive" class="archive">Archive</a>
     <script>
         function toggleTheme() {
           const html = document.documentElement;
@@ -195,9 +198,9 @@ async function renderArchiveList(env) {
   return new Response(`
     <html>
       <body style="font-family: Georgia, serif; padding: 50px; background: #1a1a1a; color: #e0e0e0;">
-        <h2>The Vault</h2>
+        <h2>What did it feel like?</h2>
         <ul style="line-height: 2;">${links}</ul>
-        <br><a href="/" style="color: #888; text-decoration: none;">← Today</a>
+        <br><a href="/" style="color: #888; text-decoration: none;">Today</a>
       </body>
     </html>`, { headers: { "Content-Type": "text/html" } });
 }
