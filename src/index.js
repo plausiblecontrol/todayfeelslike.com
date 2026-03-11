@@ -117,9 +117,10 @@ async function generateDailyPage(env) {
       - Example: "It's like finding a devilled egg in a communal office fridge—confusing, dangerous, and someone is definitely getting fired."
       - Example: "Today feels like trying to explain a touch-screen soda machine to a man who still carries a checkbook."
   5. Avoid using any special characters or syntax that would break HTML formatting.
-  6. No prefixed or suffixed comments! Do not say "Here is your", or "Note: ". Output only the 3 sentences as a conversational reply to the question "How does it feel today?".`;
+  6. No prefixed or suffixed comments! Do not say "Here is your", or "Note: ". Output only the 3 sentences as a conversational reply to the question "How does it feel today?".
+  7. Again DO NOT UNDER ANY CIRCUMSTANCE Include a comment like 'Note:' or 'Heres my'.`;
 
-  const aiResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", { prompt: promptAsk, temperature: 0.8 });
+  const aiResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", { prompt: promptAsk, temperature: 0.4 });
 
   const summary = aiResponse.response.trim();
   const sentenceMatch = summary.match(/[^.!?]+[.!?]\s*$/g);
