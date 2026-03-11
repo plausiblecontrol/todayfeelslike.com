@@ -15,4 +15,4 @@ zone_name = "todayfeelslike.com"
 
 [[kv_namespaces]]
 binding = "CONTENT_KV"
-id = "{{ op://today-feels-like/KV_NAMESPACE_ID }}"
+id = "${TFL_KV_ID}"
