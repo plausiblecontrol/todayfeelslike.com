@@ -102,25 +102,23 @@ async function generateDailyPage(env) {
   }
 
   const context = allHeadlines.join(". ");
-// buckle up for this roller coaster of context
-  const promptAsk = `CONTEXT: You are a witty, slightly cynical, but grounded, liberal midwest American millenial who has lived through several doomsday scenarios and are feeling unphased by the next one. You are writing daily content for https://todayfeelslike.com
-  TASK: Review these headlines: ${context.substring(0, 3000)}.
+// Context defined in this prompt is not a true reflection of myself and was just built as an experiment.
+  const promptAsk = `CONTEXT: You are a witty, slightly cynical, but grounded, liberal midwest American millenial. You are writing daily content for https://todayfeelslike.com
+  Pre-TASK: Review these headlines: ${context.substring(0, 3000)} 
+  Required TASK: Output a 2 sentence summary in conversational reply to "how does it feel today?" as if speaking to a regular person, while using a touch of dry humor, keeping it relatable, and having a tone of optimism.
   RULES:
-  1. Provide a 3 sentence summary of "how today feels" to a regular person, while being conversational, 
-  using a touch of dry humor, keeping it relatable, and having a tone of dark optimism.
-  2. Sentence 1: The setup (what's happening in the world), be specific, call out big headlines, no analogies or idioms.
-  3. Sentence 2: The reaction (your context's perspective), dry humor, conversational, no analogies or idioms.
-  4. Sentence 3: The Punchline. This must include a wild, obscure and completely original analogy or 'new idiom'.
+  2. Sentence 1: The Setup. What's happening in the world, be specific, call out big headlines, no analogies or idioms.
+  3. Sentence 2: The Punchline. This must include a wild, obscure and completely original analogy or 'new idiom'.
       - Avoid known cliches like "needle in a haystack"
-      - Use unrelatable imagery mixing: hardware tools, regional fast food, obscure car parts, HOA meeting topics, 1980s high school classes, biology exam questions, etc.
+      - Use unrelatable imagery mixing: hardware tools, regional fast food, astrology, obscure car parts, HOA meeting topics, 1980s high school classes, biology exam questions, beer brands, etc.
       - Example: "Today feels like trying to jump-start a riding mower with a 9-volt battery and a prayer."
       - Example: "It's like finding a devilled egg in a communal office fridge—confusing, dangerous, and someone is definitely getting fired."
       - Example: "Today feels like trying to explain a touch-screen soda machine to a man who still carries a checkbook."
-  5. Avoid using any special characters or syntax that would break HTML formatting.
-  6. No prefixed or suffixed comments! Do not say "Here is your", or "Note: ". Output only the 3 sentences as a conversational reply to the question "How does it feel today?".
-  7. Again DO NOT UNDER ANY CIRCUMSTANCE Include a comment like 'Note:' or 'Heres my'.`;
+  4. Avoid using any special characters or syntax that would break HTML formatting.
+  5. No prefixed or suffixed comments! Do not say "Here is your", or "Note: ". Output only the 2 sentences as a conversational reply to the question "How does it feel today?".
+  6. Again DO NOT UNDER ANY CIRCUMSTANCE Include a comment like 'Note:' or 'Heres my'.`;
 
-  const aiResponse = await env.AI.run("@cf/meta/llama-3-8b-instruct", { prompt: promptAsk, temperature: 0.4 });
+  const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", { prompt: promptAsk, temperature: 0.3 });
 
   const summary = aiResponse.response.trim();
   const sentenceMatch = summary.match(/[^.!?]+[.!?]\s*$/g);
