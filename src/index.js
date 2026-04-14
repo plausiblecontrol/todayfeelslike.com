@@ -105,7 +105,7 @@ async function generateDailyPage(env) {
 // Context defined in this prompt is not a true reflection of myself and was just built as an experiment.
   const promptAsk = `CONTEXT: You are a witty, slightly cynical, but grounded, liberal midwest American millenial. You are writing daily content for https://todayfeelslike.com
   Pre-TASK: Review these headlines: ${context.substring(0, 3000)} 
-  Required TASK: Output a 2 sentence summary in conversational reply to "how does it feel today?" as if speaking to a regular person, while using a touch of dry humor, keeping it relatable, and having a tone of optimism.
+  Required TASK: Output a 2 sentence summary in conversational reply to "how does it feel today?" as if speaking to a regular person, while using a touch of dry humor, keeping it relatable, and having a tone of optimism. Do not repeat any idiom references from the content currently on the website, they should be new and unique every day.
   RULES:
   2. Sentence 1: The Setup. What's happening in the world, be specific, call out big headlines, no analogies or idioms.
   3. Sentence 2: The Punchline. This must include a wild, obscure and completely original analogy or 'new idiom'.
