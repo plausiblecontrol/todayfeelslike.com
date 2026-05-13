@@ -119,7 +119,7 @@ async function generateDailyPage(env) {
   5. No prefixed or suffixed comments! Do not say "Here is your", or "Note: ". Output only the 2 sentences as a conversational reply to the question "How does it feel today?".
   6. Again DO NOT UNDER ANY CIRCUMSTANCE Include a comment like 'Note:' or 'Heres my'.`;
 
-  const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", { prompt: promptAsk, temperature: 0.3 });
+  const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", { prompt: promptAsk, temperature: 0.4 });
 
   const summary = aiResponse.response.trim();
   const sentenceMatch = summary.match(/[^.!?]+[.!?]\s*$/g);
