@@ -122,7 +122,16 @@ async function generateDailyPage(env) {
 //  const aiResponse = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", { prompt: promptAsk, temperature: 0.4 });
   const aiResponse = await env.AI.run("@cf/openai/gpt-oss-120b", { prompt: promptAsk, temperature: 0.3 });
 
-  const summary = aiResponse.response.trim();
+  //  const summary = aiResponse.response.trim(); //Llama-4-scout-17b
+  const rawText = aiResponse.response
+    || aiResponse.choices?.[0]?.message?.content
+    || aiResponse.choices?.[0]?.text;
+
+  if (!rawText) {
+    console.error("AI Run failed or returned unexpected format:", aiResponse);
+  }
+  const summary = (rawText || "Today feels like trying to read a missing map in a dark room.").trim();
+
   const sentenceMatch = summary.match(/[^.!?]+[.!?]\s*$/g);
   const lastSentence = sentenceMatch ? sentenceMatch[0].trim() : "..like a lot";
   const htmlLS = lastSentence.replace(/"/g, "'");
