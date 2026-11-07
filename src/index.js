@@ -142,7 +142,8 @@ async function generateDailyPage(env) {
 
   const aiResponse = await env.AI.run("@cf/openai/gpt-oss-120b", { 
     messages: messages, 
-    temperature: 0.4 
+    temperature: 0.4,
+    max_tokens: 1500
   });
 
   // Handle both standard Cloudflare AI formats and OpenAI-compatible formats
