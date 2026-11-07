@@ -8,6 +8,10 @@ crons = ["0 14 * * *"]
 [ai]
 binding = "AI"
 
+[observability.logs]
+enabled = true
+invocation_logs = true
+
 [[routes]]
 pattern = "todayfeelslike.com"
 custom_domain = true
