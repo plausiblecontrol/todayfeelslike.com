@@ -129,10 +129,11 @@ async function generateDailyPage(env) {
   TASK: Output a 2-sentence summary in conversational reply to "how does it feel today?" as if speaking to a regular person, with dry humor and a tone of optimism. 
 
   RULES:
-  1. Sentence 1: The Setup. What's happening in the world, be specific, call out big headlines, no analogies or idioms.
+  1. Sentence 1: The Setup. What's happening in the world while focusing on the USA, be specific, call out big headlines, no analogies or idioms.
   2. Sentence 2: The Punchline. This must include a wild, obscure and completely original analogy or 'new idiom'.
       - Avoid known cliches.
       - Use unrelatable imagery mixing: hardware tools, regional fast food, astrology, obscure car parts, HOA meeting topics, 1980s high school classes, biology exam questions, beer brands, etc.
+      - Always starts with 'Today feels like'
       - Example: "Today feels like trying to jump-start a riding mower with a 9-volt battery and a prayer."`;
 
   const messages = [
