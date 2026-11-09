@@ -111,7 +111,8 @@ async function generateDailyPage(env) {
 //  3. Sentence 2: The Punchline. This must include a wild, obscure and completely original analogy or 'new idiom'.
 //      - Avoid known cliches like "needle in a haystack"
 //      - Do not, under any circumstance, use similar words that are in the punchline of the existing front page at https://todayfeelslike.com
-//      - Use unrelatable imagery mixing: hardware tools, regional fast food, astrology, obscure car parts, HOA meeting topics, 1980s high school classes, biology exam questions, beer brands, etc.
+//      - Use TWO unrelatable imagery, mixing two things from at least: hardware tools, regional fast food, astrology, obscure car parts, HOA meeting topics, 1980s high school classes, beer brands, video game references, etc.
+//      - Be whimsy and unofficial sounding - read spoken and dont use EM dashes.
 //      - Example: "Today feels like trying to jump-start a riding mower with a 9-volt battery and a prayer."
 //      - Example: "It's like finding a devilled egg in a communal office fridge—confusing, dangerous, and someone is definitely getting fired."
 //      - Example: "Today feels like trying to explain a touch-screen soda machine to a man who still carries a checkbook."
