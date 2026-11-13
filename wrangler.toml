@@ -3,7 +3,7 @@ main = "src/index.js"
 compatibility_date = "2024-03-09"
 
 [triggers]
-crons = ["30 17 * * *"]
+crons = ["00 18 * * *"]
 
 [ai]
 binding = "AI"

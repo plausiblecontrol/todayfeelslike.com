@@ -136,6 +136,7 @@ async function generateDailyPage(env) {
           - Church basement activities
           - County fair competitions 
       - Always starts with 'Today feels like'
+      - Ensure the sentence is written in the perspective of an action that a person is doing.
       - Example: "Today feels like trying to jump-start a riding mower with a 9-volt battery and a prayer."`;
 
   const messages = [
